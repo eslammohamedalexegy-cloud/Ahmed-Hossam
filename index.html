@@ -51,36 +51,36 @@
 
 
 
+<div id="gallery"></div>
 
-    <div id="gallery"></div>
+<style>
+#gallery {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(150px,1fr));
+  gap: 10px;
+}
+#gallery img {
+  width: 100%;
+  border-radius: 10px;
+}
+</style>
 
-    <style>
-        #gallery {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
-            gap: 10px;
-        }
+<script>
+const CLOUD_NAME = "dqkrwssks";  // Cloud name بتاعك
+const FOLDER = "portfolio";      // الفولدر اللي حاطه للصور
 
-        #gallery img {
-            width: 100%;
-            border-radius: 10px;
-        }
-    </style>
-
-    <script>
-        const CLOUD_NAME = "ضع هنا cloud name";
-        const FOLDER = "portfolio";
-
-        fetch(`https://res.cloudinary.com/${CLOUD_NAME}/image/list/${FOLDER}.json`)
-            .then(res => res.json())
-            .then(data => {
-                data.resources.forEach(img => {
-                    document.getElementById("gallery").innerHTML += `
-      <img src="https://res.cloudinary.com/${CLOUD_NAME}/image/upload/${FOLDER}/${img.public_id.split('/').pop()}" />
-    `;
-                });
-            });
-    </script>
+// Cloudinary عندها API مجاني لاستعراض الصور بشكل JSON
+fetch(`https://res.cloudinary.com/${CLOUD_NAME}/image/list/${FOLDER}.json`)
+.then(res => res.json())
+.then(data => {
+  data.resources.forEach(img => {
+    // public_id بيبقى اسم الصورة على Cloudinary
+    const url = `https://res.cloudinary.com/${CLOUD_NAME}/image/upload/${FOLDER}/${img.public_id.split('/').pop()}`;
+    document.getElementById("gallery").innerHTML += `<img src="${url}"/>`;
+  });
+})
+.catch(err => console.log("خطأ:", err));
+</script>
 
 
 
