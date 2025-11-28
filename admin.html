@@ -1,25 +1,31 @@
 <!DOCTYPE html>
 <html lang="ar">
 <head>
-  <meta charset="UTF-8">
-  <title>رفع الصور</title>
+<meta charset="UTF-8">
+<title>Admin - رفع مشروع</title>
 </head>
 <body>
 
-<h2>رفع صورة</h2>
-<input type="file" id="file" />
-<button onclick="upload()">رفع الصورة</button>
+<h2>لوحة التحكم للعميل</h2>
+<p>اختر صورة للمشروع، ثم اضغط رفع</p>
+
+<input type="text" id="title" placeholder="عنوان المشروع"><br><br>
+<textarea id="description" placeholder="وصف المشروع"></textarea><br><br>
+<input type="file" id="file"><br><br>
+<button onclick="uploadProject()">رفع المشروع</button>
 <p id="status"></p>
 
 <script>
 const CLOUD_NAME = "dqkrwssks";  // ضع هنا Cloud name بتاعك
-const UPLOAD_PRESET = "upload_images"; // الاسم اللي عملناه في الخطوة السابقة
+const UPLOAD_PRESET = "upload_images"; // الاسم اللي عملناه في Cloudinary
 
-function upload() {
+function uploadProject() {
+  const title = document.getElementById("title").value;
+  const description = document.getElementById("description").value;
   const file = document.getElementById("file").files[0];
 
-  if(!file){
-    alert("اختر صورة أولاً");
+  if(!title || !description || !file){
+    alert("اكمل كل البيانات");
     return;
   }
 
@@ -33,11 +39,16 @@ function upload() {
   })
   .then(res => res.json())
   .then(data => {
-    console.log(data);
-    document.getElementById("status").innerText = "✅ تم رفع الصورة";
+    const imageUrl = data.secure_url;
+    document.getElementById("status").innerHTML = `
+      ✅ تم رفع الصورة بنجاح! <br>
+      رابط الصورة: <input type="text" value="${imageUrl}" readonly style="width:400px">
+      <br>الآن أرسل الرابط + العنوان + الوصف للمالك ليضيفه على الموقع.
+    `;
   })
-  .catch(() => {
+  .catch(err => {
     document.getElementById("status").innerText = "❌ فشل رفع الصورة";
+    console.log(err);
   });
 }
 </script>
