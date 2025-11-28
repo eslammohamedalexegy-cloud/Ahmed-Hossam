@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="ar">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome To Ahmed Portfolio</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div class="intro">
+        <div>
+            <img class="ahmedpic" src="ahmedpic2.jpeg" alt="My photo">
+        </div>
+        <div>
+            <h3>
+
+            </h3>
+        </div>
+    </div>
+
+    <h1 id="nametxt">Ahmed Hossam</h1>
+    <h1 id="job">Graphic Designer</h1>
+
+
+
+    <div class="contact">
+
+        <a href="https://www.instagram.com/ahmed.hossam.201?igsh=emMwM3dxeXVmbzJs"><img src="instagram.png"
+                class="icons"></a>
+        <a href="https://wa.me/201224178580"><img src="whatsapp.png" class="icons"></a>
+    </div>
+
+
+    <div class="about">
+        <h2 style="padding-left: 10px;color: white; text-shadow: 1px; -webkit-text-stroke: 1px rgb(28, 51, 45);">Hi, My
+            Name is Ahmed</h2>
+        <h3 style="padding-left: 10px; color: white; text-shadow: 1px; -webkit-text-stroke: 1px rgb(28, 51, 45);">
+            I am 15 Years Graphic Designer
+        </h3>
+
+
+    </div>
+
+
+
+    <video autoplay muted loop id="bg-video">
+        <source src="312950.mp4" type="video/mp4">
+    </video>
+
+
+
+
+    <div id="gallery"></div>
+
+    <style>
+        #gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+            gap: 10px;
+        }
+
+        #gallery img {
+            width: 100%;
+            border-radius: 10px;
+        }
+    </style>
+
+    <script>
+        const CLOUD_NAME = "ضع هنا cloud name";
+        const FOLDER = "portfolio";
+
+        fetch(`https://res.cloudinary.com/${CLOUD_NAME}/image/list/${FOLDER}.json`)
+            .then(res => res.json())
+            .then(data => {
+                data.resources.forEach(img => {
+                    document.getElementById("gallery").innerHTML += `
+      <img src="https://res.cloudinary.com/${CLOUD_NAME}/image/upload/${FOLDER}/${img.public_id.split('/').pop()}" />
+    `;
+                });
+            });
+    </script>
+
+
+
+
+
+
+</body>
+
+</html>
