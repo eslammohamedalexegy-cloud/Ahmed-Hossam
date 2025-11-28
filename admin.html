@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+  <meta charset="UTF-8">
+  <title>رفع الصور</title>
+</head>
+<body>
+
+<h2>رفع صورة</h2>
+<input type="file" id="file" />
+<button onclick="upload()">رفع الصورة</button>
+<p id="status"></p>
+
+<script>
+const CLOUD_NAME = "dqkrwssks";  // ضع هنا Cloud name بتاعك
+const UPLOAD_PRESET = "upload_images"; // الاسم اللي عملناه في الخطوة السابقة
+
+function upload() {
+  const file = document.getElementById("file").files[0];
+
+  if(!file){
+    alert("اختر صورة أولاً");
+    return;
+  }
+
+  const formData = new FormData();
+  formData.append("file", file);
+  formData.append("upload_preset", UPLOAD_PRESET);
+
+  fetch(`https://api.cloudinary.com/v1_1/${CLOUD_NAME}/image/upload`, {
+    method: "POST",
+    body: formData
+  })
+  .then(res => res.json())
+  .then(data => {
+    console.log(data);
+    document.getElementById("status").innerText = "✅ تم رفع الصورة";
+  })
+  .catch(() => {
+    document.getElementById("status").innerText = "❌ فشل رفع الصورة";
+  });
+}
+</script>
+
+</body>
+</html>
