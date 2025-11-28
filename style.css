@@ -1,0 +1,85 @@
+.intro {
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    
+}
+
+
+
+
+#bg-video{
+    filter: blur(2px);
+    position: fixed;
+    top: 0;
+    right: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: -1;
+}
+
+
+.ahmedpic {
+    object-fit: cover;
+    border-radius: 50px;
+    height: 100px;
+    transition: all 0.4s;
+    box-shadow: 1px 1px 10px;
+    border: 2px solid rgb(51, 192, 228);
+}
+
+
+.ahmedpic:hover {
+    transform: scale(1.1);
+    box-shadow: 0 0 25px #277ddf
+}
+#nametxt {
+    justify-content: center;
+    color: #80a8f1;
+    display: flex;
+    -webkit-text-stroke: 1px  rgb(255, 255, 255);
+    font-size: 35px;
+    font-family: Arial, Helvetica, sans-serif;
+}
+#job{
+    color: rgb(0, 0, 0);
+justify-content: center;
+display:flex;
+font-size: 30px;
+font-family: Arial, Helvetica, sans-serif;
+-webkit-text-stroke: 0.8px white;
+}
+
+.contact{
+align-items: center;
+display: flex;
+justify-content: center;
+gap:36px
+}
+
+.icons{
+ border-radius: 10px;
+width: 40px;
+transition: 0.4s;
+}
+.icons:hover{
+    transform: scale(1.1);
+    box-shadow: 7px 7px 10px #277ddf;
+    
+}
+.about{
+    width: fit-content;
+    height: fit-content;
+    margin-right: 150px;
+    margin-left: -8px;
+    font-family: Arial, Helvetica, sans-serif;
+    align-items:start;
+    align-items: start;
+    border-radius:1px 10px 10px 1px;
+background-color: rgb(55, 92, 95);
+box-shadow:10px 10px 35px rgb(73, 226, 236);
+transition: 0.3s;
+
+}
