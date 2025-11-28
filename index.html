@@ -87,6 +87,71 @@ fetch(`https://res.cloudinary.com/${CLOUD_NAME}/image/list/${FOLDER}.json`)
 
 
 
+<h2 style="color:white; padding-left:10px;">My Projects</h2>
+<div id="gallery"></div>
+
+<style>
+#gallery {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px,1fr));
+  gap: 15px;
+  padding: 20px;
+}
+
+.project {
+  background: rgba(0,0,0,0.6);
+  padding: 10px;
+  border-radius: 10px;
+  text-align: center;
+  color: white;
+}
+
+.project img {
+  width: 100%;
+  border-radius: 10px;
+  margin-bottom: 10px;
+}
+
+.project h3 {
+  margin: 5px 0;
+  font-size: 16px;
+}
+
+.project p {
+  font-size: 14px;
+}
+</style>
+
+<script>
+// مثال لمشاريع ثابتة، هتغيرها بمحتوى العميل (رابط + عنوان + وصف)
+const projects = [
+  {
+    title: "Project 1",
+    description: "Description of Project 1",
+    image: "https://res.cloudinary.com/dqkrwssks/image/upload/portfolio/sample1.jpg"
+  },
+  {
+    title: "Project 2",
+    description: "Description of Project 2",
+    image: "https://res.cloudinary.com/dqkrwssks/image/upload/portfolio/sample2.jpg"
+  }
+];
+
+// عرض المشاريع
+const gallery = document.getElementById("gallery");
+projects.forEach(p => {
+  gallery.innerHTML += `
+    <div class="project">
+      <img src="${p.image}" alt="${p.title}">
+      <h3>${p.title}</h3>
+      <p>${p.description}</p>
+    </div>
+  `;
+});
+</script>
+
+
+
 </body>
 
 </html>
